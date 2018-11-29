@@ -16,4 +16,19 @@ public class ChasisModule : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void Damage(float damage) {
+        float finalHealth = this.health - damage;
+        print(finalHealth);
+        if (finalHealth > 0.0f) {
+            this.health = finalHealth;
+        } else {
+            this.health = 0.0f;
+            this.Death();
+        }
+    }
+
+    void Death() {
+        Destroy(this.gameObject);
+    }
 }

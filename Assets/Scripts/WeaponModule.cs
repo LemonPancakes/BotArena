@@ -7,7 +7,7 @@ public class WeaponModule : MonoBehaviour {
     public GameObject bulletPrefab;
 
     public float weaponDamage;
-    public float weaponRange;
+    public float weaponRange; // TODO: use
     public float projectileVelocity;
     public float projectileLifeTime;
 
@@ -26,6 +26,8 @@ public class WeaponModule : MonoBehaviour {
     public void Fire() {
         var bulletClone = (GameObject)Instantiate(bulletPrefab, gameObject.transform.position + gameObject.transform.up * 0.5f, gameObject.transform.rotation);
         bulletClone.GetComponent<Rigidbody2D>().velocity = bulletClone.transform.up * projectileVelocity;
+
+        bulletClone.GetComponent<Bullet>().SetDamage(weaponDamage);
 
         Destroy(bulletClone, projectileLifeTime);
     }
